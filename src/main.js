@@ -1,6 +1,3 @@
-let humanScore = 0;
-let computerScore  = 0;
-
 function getComputerChoice()
 {
     let randomNum = Math.random();
@@ -23,27 +20,53 @@ function getHumanChoice()
     return prompt("Enter your choice");
 }
 
-function playRound(humanChoice, computerChoice)
+function playGame()
 {
-    let human = humanChoice.toLowerCase();
-    let computer = computerChoice.toLowerCase();
+    let humanScore = 0;
+    let computerScore  = 0;
+    let rounds = 0;
 
-    if((human === "rock" && computer =="scissors") 
-        || (human === "scissors" && computer =="paper")
-        || (human === "paper" && computer =="rock"))
+    function playRound(humanChoice, computerChoice)
     {
-        humanScore++;
-        console.log(`You Win! ${human} beats ${computer}.`);
+        let human = humanChoice.toLowerCase();
+        let computer = computerChoice.toLowerCase();
+
+        if((human === "rock" && computer =="scissors") 
+            || (human === "scissors" && computer =="paper")
+            || (human === "paper" && computer =="rock"))
+        {
+            humanScore++;
+            console.log(`You Win! ${human} beats ${computer}.`);
+        }
+        else if(human === computer)
+        {
+            console.log(`It's a tie! both selected ${human}.`);
+        }
+        else
+        {
+            computerScore++;
+            console.log(`You lose! ${computer} beats ${human}.`);
+        }
     }
-    else if(human === computer)
+
+    while(rounds < 5)
     {
-        console.log(`It's a tie! both selected ${human}.`);
+        playRound(getHumanChoice(), getComputerChoice());
+        rounds++;
     }
-    else
+
+    if(humanScore > computerScore)
     {
-        computerScore++;
-        console.log(`You lose! ${computer} beats ${human}.`);
+        console.log(`You Win the game with score ${humanScore} - ${computerScore}`);
+    }
+    else if (humanScore === computerScore)
+    {
+        console.log(`Game is tied with score ${humanScore} - ${computerScore}`);
+    }
+    else 
+    {
+        console.log(`You Lose the game with score ${humanScore} - ${computerScore}`);
     }
 }
 
-playRound(getHumanChoice(), getComputerChoice());
+playGame();
