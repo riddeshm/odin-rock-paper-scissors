@@ -1,4 +1,4 @@
-console.log(getComputerChoice());
+console.log(getHumanChoice());
 function getComputerChoice()
 {
     let randomNum = Math.random();
@@ -14,4 +14,9 @@ function getComputerChoice()
     {
         return "scissors";
     }
+}
+
+function getHumanChoice()
+{
+    return prompt("Enter your choice");
 }
