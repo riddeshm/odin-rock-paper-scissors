@@ -1,5 +1,3 @@
-console.log(getHumanChoice());
-
 let humanScore = 0;
 let computerScore  = 0;
 
@@ -24,3 +22,28 @@ function getHumanChoice()
 {
     return prompt("Enter your choice");
 }
+
+function playRound(humanChoice, computerChoice)
+{
+    let human = humanChoice.toLowerCase();
+    let computer = computerChoice.toLowerCase();
+
+    if((human === "rock" && computer =="scissors") 
+        || (human === "scissors" && computer =="paper")
+        || (human === "paper" && computer =="rock"))
+    {
+        humanScore++;
+        console.log(`You Win! ${human} beats ${computer}.`);
+    }
+    else if(human === computer)
+    {
+        console.log(`It's a tie! both selected ${human}.`);
+    }
+    else
+    {
+        computerScore++;
+        console.log(`You lose! ${computer} beats ${human}.`);
+    }
+}
+
+playRound(getHumanChoice(), getComputerChoice());
